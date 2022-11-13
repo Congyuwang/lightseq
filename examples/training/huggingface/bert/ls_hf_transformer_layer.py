@@ -114,7 +114,7 @@ def inject_ls_layer(model, training_args, model_args, config):
 
     def gen_bert_enc_config(training_args, config):
         bert_enc_config = TransformerEncoderLayer.get_config(
-            max_batch_tokens=4096,
+            max_batch_tokens=4096 * 8,
             max_seq_len=config.max_position_embeddings,
             hidden_size=config.hidden_size,
             intermediate_size=config.intermediate_size,
