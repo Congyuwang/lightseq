@@ -33,6 +33,7 @@ import torch
 import transformers
 from transformers import (
     AutoConfig,
+    BertForTokenClassification,
     AutoModelForTokenClassification,
     AutoTokenizer,
     DataCollatorForTokenClassification,
@@ -46,7 +47,7 @@ from transformers.trainer_utils import get_last_checkpoint
 from transformers.utils import check_min_version
 import sys
 sys.path.insert(0, '.')
-from ls_hf_transformer_layer import inject_ls_layer, LSBertForTokenClassification
+from ls_hf_transformer_layer import LSBertForTokenClassification
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 check_min_version("4.7.0.dev0")
@@ -382,10 +383,10 @@ def main():
     #     inject_ls_layer(model, training_args, model_args, config)
 
     # Replace with lightseq encoder layers and save the huggingface model
-    model = LSBertForTokenClassification.from_pretrained(
+    model = BertForTokenClassification.from_pretrained(
         model_args.model_name_or_path,
-        training_args=training_args,
-        model_args=model_args,
+        # training_args=training_args,
+        # model_args=model_args,
         from_tf=bool(".ckpt" in model_args.model_name_or_path),
         config=config,
         cache_dir=model_args.cache_dir,
