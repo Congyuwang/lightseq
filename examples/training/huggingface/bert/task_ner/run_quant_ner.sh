@@ -25,7 +25,7 @@ python3 -m torch.distributed.launch \
   --num_train_epochs 20 \
   --output_dir /tmp/quant/test-ner \
   --overwrite_output_dir \
-  --resume_from_checkpoint /tmp/test-ner/ \
+#   --resume_from_checkpoint /tmp/test-ner/ \
   --fp16 \
   --seed 1234 \
   --logging_steps 10 \
