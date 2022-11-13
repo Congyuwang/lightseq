@@ -532,7 +532,13 @@ def main():
         tokenizer=tokenizer,
         data_collator=data_collator,
         compute_metrics=compute_metrics,
-        optimizers=(LSAdam, None),
+        optimizers=(LSAdam(
+            [],
+            lr=training_args.learning_rate,
+            betas=(training_args.adam_beta1, training_args.adam_beta2),
+            eps=training_args.adam_epsilon,
+            weight_decay=training_args.weight_decay,
+        )),
     )
 
     if not training_args.do_train:
